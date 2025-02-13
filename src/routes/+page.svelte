@@ -1,2 +1,3 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<h1>Hello world!</h1>
+<p>This is Samuel, blablabla...</p>
+<a href="https://samuel-humeau.notion.site/Mon-portfolio-419c3a4839054069828e61410d67fe0f" target="_blank">Notion portfolio</a>

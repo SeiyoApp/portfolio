@@ -1,0 +1,14 @@
+@use 'layout' as *;
+@use 'typography' as *;
+@use 'variables' as *;
+
+// Styles globaux
+body {
+    background-color: $background;
+    color: $text;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
