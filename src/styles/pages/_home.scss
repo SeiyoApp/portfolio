@@ -1,0 +1,52 @@
+@use '/src/styles/layout' as *;
+@use '/src/styles/typography' as *;
+@use '/src/styles/variables' as *;
+
+.hero {
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 4vw;
+    padding: 0 4vw;
+}
+.hero__left , .hero__right {
+    flex: 1;
+}
+.hero__left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+.hero__right__image {
+    border-radius: 20px;
+    width: 100%;
+}
+
+.scroll-incitation {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+.scroll-incitation__icon {
+    width: 36px;
+    animation: bounce 3s infinite;
+}
+@keyframes bounce {
+    0%, 15%, 37%, 60%, 75% {  // Compressé la séquence pour laisser de la place à la pause
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-32%);
+    }
+    45% {
+        transform: translateY(-16%);
+    }
+    // Pause de 75% à 100%
+    75.1%, 100% {
+        transform: translateY(0);
+    }
+}

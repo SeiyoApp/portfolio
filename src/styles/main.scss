@@ -12,3 +12,46 @@ body {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+img {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.btn-primary {
+    padding: 12px 24px;
+    border-radius: 40px;
+    background-color: $primary;
+    color: $background;
+    font-family: $primary-font;
+    text-decoration: none;
+    @include short-transition;
+
+    &:hover {
+        transform: scale(1.08) rotate(-2deg);
+        filter: brightness(0.92);
+    }
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 32px;
+    background-color: rgba(255 255 255 / 40%);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    
+    &__links {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+    }
+    &__logo {
+        font-family: $primary-font;
+    }
+}
