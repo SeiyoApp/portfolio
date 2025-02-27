@@ -1,9 +1,23 @@
 // Couleurs
-$primary: #3b82f6;
-$secondary: #6366f1;
-$accent: #f59e0b;
-$text: #1f2937;
-$background: #ffffff;
+$primary_50: #F5FBFF;
+$primary_100: #E5F4FF;
+$primary_200: #CAEAFF;
+$primary_300: #9ADCFF;
+$primary_400: #61C8FF;
+$primary_500: #2FA5E5;
+$primary_600: #118AA5;
+$primary_700: #005786;
+$primary_800: #003B5B;
+$primary_900: #002437;
+
+// Typographies
+$primary-font: 'Space Grotesk', 'Inter', serif;
+$secondary-font: 'Inter', sans-serif;
+$base-font-size: 14px;
+
+:root {
+  font-size: $base-font-size;
+}
 
 // Espacements
 $spacing: (

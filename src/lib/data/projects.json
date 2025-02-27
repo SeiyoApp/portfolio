@@ -1,0 +1,50 @@
+{
+    "projects": [
+      {
+        "id": "portfolio",
+        "title": "Portfolio personnel",
+        "slug": "portfolio-personnel",
+        "description": "Ceci est mon portfolio moderne développé avec Svelte",
+        "tags": ["Svelte", "SCSS", "TypeScript"],
+        "thumbnail": "/projects/portfolio/thumbnail.jpeg",
+        "year": 2025,
+        "duration": "1 mois",
+        "sector": "Personnel",
+        "role": "Designer & Développeur",
+        "url": "https://samuelhumeau.fr",
+        "content": {
+          "context": "Le logiciel actuel était vraiment dégueu, j'ai jamais rien vu d'aussi pourri ! L'ancien designer est parti à la retraite, donc etc...",
+          "images": [
+            "/projects/portfolio/1.jpeg",
+            "/projects/portfolio/2.jpeg",
+            "/projects/portfolio/3.jpeg",
+            "/projects/portfolio/4.jpeg" ],
+          "challenge": "Description du challenge...",
+          "solution": "Description de la solution..."
+        }
+      },
+      {
+        "id": "anisen",
+        "title": "Anisen",
+        "slug": "anisen",
+        "description": "...",
+        "tags": ["User research", "Figma"],
+        "thumbnail": "/projects/anisen/thumbnail.jpeg",
+        "year": 2025,
+        "duration": "6 mois",
+        "sector": "Medico-social",
+        "role": "UX-UI Designer",
+        "url": "https://anisen.fr/",
+        "content": {
+          "context": "Le logiciel actuel était vraiment dégueu, j'ai jamais rien vu d'aussi pourri ! L'ancien designer est parti à la retraite, donc etc...",
+          "images": [
+            "/projects/anisen/1.jpeg",
+            "/projects/anisen/2.jpeg",
+            "/projects/anisen/3.jpeg",
+            "/projects/anisen/4.jpeg" ],
+          "challenge": "Description du challenge...",
+          "solution": "Description de la solution..."
+        }
+      }
+    ]
+  }

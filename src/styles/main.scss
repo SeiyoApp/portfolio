@@ -1,11 +1,15 @@
-@use 'layout' as *;
-@use 'typography' as *;
 @use 'variables' as *;
+@use 'typography' as *;
+@use 'layout';
 
-// Styles globaux
+
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background-color: $background;
-    color: $text;
+    background-color: $primary_50;
 }
 
 .container {
@@ -18,29 +22,15 @@ img {
     -webkit-user-drag: none;
 }
 
-.btn-primary {
-    padding: 12px 24px;
-    border-radius: 40px;
-    background-color: $primary;
-    color: $background;
-    font-family: $primary-font;
-    text-decoration: none;
-    @include short-transition;
-
-    &:hover {
-        transform: scale(1.08) rotate(-2deg);
-        filter: brightness(0.92);
-    }
-}
-
 .header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 20px 32px;
-    background-color: rgba(255 255 255 / 40%);
+    background-color: rgba($primary_50, 0.4);
     backdrop-filter: blur(8px);
+    border-bottom: solid 1px rgba($primary_50, 0.2);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -48,10 +38,96 @@ img {
     &__links {
         display: flex;
         flex-direction: row;
-        gap: 20px;
+        gap: 40px;
         align-items: center;
     }
     &__logo {
         font-family: $primary-font;
+        font-size: 24px;
+        font-weight: 500;
+        color: $primary_900;
+        text-decoration: none;
+        @include short-transition;
+        &:hover {
+            scale: 1.08;
+        }
     }
+}
+
+main {
+    padding: 0 4vw;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    gap: 12px;
+    padding: 16px 24px 16px 64px;
+    border-radius: 40px;
+    background-color: $primary_400;
+    color: $primary_900;
+    font-family: $primary-font;
+    font-size: 16px;
+    font-weight: 450;
+    text-decoration: none;
+    @include short-transition;
+    position: relative;
+
+    &:hover {
+        transform: scale(1.08);
+    }
+
+    &:hover &__icon span img {
+        transform: translateX(44%);
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        background-color: $primary_50;
+        border-radius: 100%;
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        height: calc(100% - 8px);
+        aspect-ratio: 1;
+
+        span {
+            width: 100%;
+            height: 24px;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            overflow: hidden;
+        }
+        
+        img {
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+            @include short-transition;
+            transform: translateX(-140%);
+        }
+    }
+}
+.button.button--icon-right {
+    padding: 16px 64px 16px 24px;
+
+    .button__icon {
+        left: unset;
+        right: 4px;
+    }
+
+    &:hover &__icon span img {
+        transform: translateX(44%);
+    }
+}
+
+
+
+.cta-big-section__container {
+    background-color: $primary_800;
 }
