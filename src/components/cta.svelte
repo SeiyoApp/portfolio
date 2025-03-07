@@ -8,8 +8,9 @@
     export let iconPosition: 'left' | 'right' = 'right';
     export let variant: 'primary' | 'secondary' = 'primary';
     export let external: boolean = false;
+    export let inheritHover: boolean = false;
 
-    $: buttonClasses = `button button--${variant} ${iconName ? 'button--with-icon' : ''} ${iconName && iconPosition === 'right' ? 'button--icon-right' : ''}`.trim();
+    $: buttonClasses = `button button--${variant} ${iconName ? 'button--with-icon' : ''} ${iconName && iconPosition === 'right' ? 'button--icon-right' : ''} ${inheritHover ? 'button--inherit-hover' : ''}`.trim();
 
 </script>
 
@@ -56,3 +57,13 @@
     {/if}
   </button>
 {/if}
+
+
+
+<style lang="scss">
+
+  :global(.button--inherit-hover) {
+    transition: all 0.24s ease;
+  }
+
+</style>

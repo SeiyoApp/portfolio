@@ -67,18 +67,18 @@
         <p class="project__context">{project.content.context}</p>
 
         <div class="project__gallery">
-            <div class="parallax-container">
+            <div class="parallax-container parallax-container--large">
                 <img src={project.content.images[0]} alt={project.title} />
             </div>
             <div class="project__gallery-row">
-                <div class="parallax-container">
+                <div class="parallax-container parallax-container--square">
                     <img src={project.content.images[1]} alt={project.title} />
                 </div>
-                <div class="parallax-container">
+                <div class="parallax-container parallax-container--square">
                     <img src={project.content.images[2]} alt={project.title} />
                 </div>
             </div>
-            <div class="parallax-container">
+            <div class="parallax-container parallax-container--large">
                 <img src={project.content.images[3]} alt={project.title} />
             </div>
         </div>
@@ -98,7 +98,7 @@
     @use '../../../styles/variables' as *;
 
     header {
-        padding-top: 80px;
+        padding-top: 40px;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -111,6 +111,7 @@
             flex-direction: column;
             align-items: start;
             gap: 32px;
+            padding-bottom: 120px;
 
             p {
                 margin-top: 8px;
@@ -124,7 +125,7 @@
             gap: 16px;
 
             .project__thumbnail {
-                aspect-ratio: 1;
+                height: 64vh;
                 width: 100%;
 
                 img {
@@ -199,7 +200,7 @@
             gap: 16px;
             width: 100%;
 
-            .parallax-container {
+            .parallax-container--square {
                 flex: 1;
             }
         }
@@ -221,8 +222,13 @@
     .parallax-container {
         position: relative;
         overflow: hidden;
-        height: 60vh;
         border-radius: 24px;
+    }
+    .parallax-container--square {
+        aspect-ratio: 1/1;
+    }
+    .parallax-container--large {
+        aspect-ratio: 2/1;
     }
 
 </style>

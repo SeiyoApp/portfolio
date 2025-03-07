@@ -1,6 +1,30 @@
-<script>
+<script lang="ts">
+    import Cta from '../../components/cta.svelte';
+    import CtaBigSection from '../../components/cta-big-section.svelte';
+    import { onMount } from 'svelte';
+    import Swiper from 'swiper';
+    import { Pagination, Keyboard } from 'swiper/modules';
+
+    import 'swiper/css';
+    import 'swiper/css/pagination';
+
     export let data;
-    const { projects } = data;
+
+    let swiperElement;
+    let swiperInstance;
+
+    onMount(() => {
+        swiperInstance = new Swiper(swiperElement, {
+            modules: [Pagination, Keyboard],
+            slidesPerView: 1,
+            centeredSlides: true,
+            spaceBetween: -88,
+            grabCursor: true,
+            pagination: { clickable: true },
+            keyboard: { enabled: true },
+            effect: "slide"
+        });
+    });
 </script>
 
 
@@ -10,102 +34,164 @@
     <p>Ceci est une introduction qui intoduit mes projets</p>
 </div>
 
-
-{#if !projects || projects.length === 0}
-    <p>Aucun projet n'est disponible pour le moment.</p>
-{:else}
-<div class="projects-grid">
-    {#each projects as project}
-    <a href="/projets/{project.slug}" class="project-card">
-        <div class="project-card__image">
-        <img src={project.thumbnail} alt={project.title} />
+<div class="projects-slider-container">
+    <div class="swiper" bind:this={swiperElement}>
+        <div class="swiper-wrapper">
+        {#each data.projects as project}
+            <div class="swiper-slide">
+                <a href="/projets/{project.slug}" class="project-slide" style="background-image: url({project.thumbnail})">
+                    <div class="project-slide__content">
+                        <div>
+                            <h3>{project.title}</h3>
+                            <div class="project-slide__tags">
+                                <span class="tag">{project.year}</span>
+                                <span class="tag">{project.sector}</span>
+                            </div>
+                        </div>
+                        <p>{project.description}</p>
+                        <Cta text="Découvrir" inheritHover />
+                    </div>
+                </a>
+            </div>
+        {/each}
         </div>
-        <div class="project-card__content">
-        <h2 class="project-card__title">{project.title}</h2>
-        <p class="project-card__description">{project.description}</p>
-        <div class="project-card__tags">
-            {#each project.tags as tag}
-            <h6 class="tag">{tag}</h6>
-            {/each}
-        </div>
-        </div>
-    </a>
-    {/each}
+    </div>
+    <div class="swiper-pagination"></div>
 </div>
-{/if}
+
+<CtaBigSection />
 
 
 
 <style lang="scss">
-    @use '../../styles/variables' as *;
+  @use '../../styles/variables' as *;
 
     .intro {
         text-align: center;
         padding: 12vh;
         display: flex;
         flex-direction: column;
-        gap: 32px
+        gap: 32px;
     }
   
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-  
-    .project-card {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
-      transition: all 0.32s cubic-bezier(.6, 0, .4, 1);
-      text-decoration: none;
-      color: inherit;
-  
-      &:hover {
-        transform: scale(1.024);
-      }
-      &:hover img {
-        transform: scale(1.04);
-      }
-    }
+    .projects-slider-container {
+        width: 100vw;
+        margin-left: -4vw;
+        margin-bottom: 120px;
+        padding: 20px 0;
 
-    .project-card__image {
-        width: 100%;
-        height: 240px;
-        overflow: hidden;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.32s cubic-bezier(.6, 0, .4, 1);
+        :global(.swiper) {
+            overflow: visible;
+        }
+        :global(.swiper-slide) {
+            height: 64vh;
+            transition: all 0.3s ease;
+        }
+        :global(.swiper-slide:first-of-type) {
+            margin-left: 4vw;
         }
     }
-
-    .project-card__content {
-        padding: 20px;
-    }
-    .project-card__title {
-        margin-bottom: 0.5rem;
-        font-size: 1.25rem !important;
-    }
-    .project-card__description {
-        margin-bottom: 1rem;
-        color: rgba(0, 0, 0, 0.7);
-    }
-    .project-card__tags {
+  
+    .project-slide {
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
+        flex-direction: column;
+        justify-content: end;
+        width: calc(100% - 12vw);
+        height: calc(100% - 64px);
+        padding: 32px;
+        text-decoration: none;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow: hidden;
+        border-radius: 24px;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
 
-        .tag {
-          background: #f3f4f6;
-          padding: 5px 10px;
-          border-radius: 20px;
-          font-size: 0.9rem;
-          font-family: $primary-font;
+        .project-slide__content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: start;
+            z-index: 10;
+            
+            * {
+                color: #FFF;
+            }
+            
+            p {
+                font-size: 1rem;
+                line-height: 1.5;
+                opacity: 0.8;
+                margin-bottom: 12px;
+            }
+
+            & > div {
+                display: flex;
+                flex-direction: row;
+                gap: 24px;
+                align-items: center;
+            }
+        }
+
+        .project-slide__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: -4px;
+            
+            .tag {
+                padding: 6px 12px;
+                border-radius: 20px;
+                border: solid 1px rgba(255, 255, 255, 0.24);
+                background-color: rgba(255, 255, 255, 0.12);
+                backdrop-filter: blur(4px);
+                font-size: 0.96rem;
+                font-weight: 300;
+                font-family: 'Space Grotesk', 'Inter', serif;
+            }
         }
     }
 
-  </style>
+    .project-slide:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+    }
+
+    .project-slide:hover {
+        transform: scale(1.012);
+    }
+    .project-slide:hover :global(.button--inherit-hover) {
+        transform: scale(1.04);
+    }
+
+    .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background-color: white;
+        color: black;
+        border-radius: 999px;
+        font-weight: 500;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        
+        svg {
+            transition: transform 0.2s ease;
+        }
+        
+        &:hover {
+            svg {
+                transform: translateX(4px);
+            }
+        }
+    }
+
+</style>

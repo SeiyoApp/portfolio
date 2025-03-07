@@ -73,6 +73,8 @@ main {
     text-decoration: none;
     @include short-transition;
     position: relative;
+    outline: none;
+    border: none;
 
     &:hover {
         transform: scale(1.08);
@@ -126,8 +128,12 @@ main {
     }
 }
 
-
-
 .cta-big-section__container {
     background-color: $primary_800;
+}
+
+.squircle-large {
+    --squircle-radius: 24px;
+    --squircle-smooth: 0.4;
+    border-radius: 24px;
 }
